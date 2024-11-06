@@ -18,6 +18,7 @@ body {
 header {
     text-align: center;
     padding: 2em;
+    height: 300px;
     color: #fff;
     background: url('cocora.jpeg') no-repeat center center;
     background-size: cover;

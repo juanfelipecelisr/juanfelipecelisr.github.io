@@ -1,20 +1,33 @@
 /* styles.css */
 
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+/* Header with Background Image */
 header {
     text-align: center;
-    padding: 2em 0;
-    /* Replace background color with an image */
+    padding: 2em;
+    color: #fff;
     background: url('cocora.jpeg') no-repeat center center;
     background-size: cover;
-    color: #fff;
 }
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -22,20 +35,39 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
-main {
-    padding: 2em;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styling */
 section {
-    margin-bottom: 2em;
+    padding: 2em;
+    margin: 2em 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+section h2 {
+    color: #4CAF50;
+    margin-bottom: 1em;
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 1em;
     background-color: #333;
     color: #fff;
+    font-size: 0.9em;
+    margin-top: 2em;
 }

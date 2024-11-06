@@ -8,12 +8,13 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 1em;
     text-align: center;
+    padding: 2em 0;
+    /* Replace background color with an image */
+    background: url('cocora.jpeg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
 }
-
 nav ul {
     list-style-type: none;
     padding: 0;

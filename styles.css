@@ -114,6 +114,40 @@ section h2 {
     text-decoration: underline;
 }
 
+#about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#about h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#about p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.topic {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9; /* light background for each topic section */
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.topic h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.topic p {
+    font-size: 16px;
+    color: #333;
+}
+
 /* Footer */
 footer {
     text-align: center;

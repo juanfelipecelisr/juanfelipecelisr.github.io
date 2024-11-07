@@ -111,12 +111,14 @@ section h2 {
 }
 
 .contact-image {
-    width: 150px; /* Adjust the width to make it smaller */
+    width: 50%; /* Increase the width to make the image larger */
     height: auto; /* Keeps the aspect ratio */
-    margin-top: 10px; /* Adds spacing between text and image */
+    display: block; /* Allows centering with margin */
+    margin: 10px auto; /* Centers the image horizontally */
     border-radius: 5px; /* Optional: rounds the corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
 }
+
 
 #about {
     max-width: 100%; /* Expands the section to the full width of the container */

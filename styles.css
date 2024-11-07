@@ -36,12 +36,6 @@ header {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.contact-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 20px; /* Add some spacing above the image */
-}
-
 header nav ul {
     list-style: none;
     padding: 0;
@@ -112,6 +106,14 @@ section h2 {
 
 #contact a:hover {
     text-decoration: underline;
+}
+
+.contact-image {
+    width: 150px; /* Adjust the width to make it smaller */
+    height: auto; /* Keeps the aspect ratio */
+    margin-top: 10px; /* Adds spacing between text and image */
+    border-radius: 5px; /* Optional: rounds the corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
 }
 
 #about {

@@ -202,15 +202,16 @@ footer {
     display: flex;
 }
 
+/* Sidebar styles */
 .sidebar {
-    width: 400px;
+    width: 500px; /* wider sidebar */
     background-color: #f4f4f4;
     padding: 15px;
-    position: top;
-    top: 250px; /* height of your header */
-    left: 0;
-    bottom: 0;
-    overflow-y: auto; /* allows scrolling if content is tall */
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-top: 0;
 }
 
 .sidebar ul {
@@ -218,12 +219,17 @@ footer {
     padding: 0;
 }
 
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
 }
 
+/* Main content next to sidebar */
 .main-content {
-    margin-left: 400px; /* space for sidebar */
+    flex: 1;
     padding: 20px;
 }

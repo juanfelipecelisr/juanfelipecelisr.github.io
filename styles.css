@@ -197,7 +197,7 @@ footer {
     width: 200px;
     background-color: #f4f4f4;
     padding: 15px;
-    position: fixed;
+    position: top;
     top: 250px; /* height of your header */
     left: 0;
     bottom: 0;

@@ -188,3 +188,33 @@ footer {
     color: #fff;
     font-size: 0.9em;
 }
+
+.layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    position: fixed;
+    top: 250px; /* height of your header */
+    left: 0;
+    bottom: 0;
+    overflow-y: auto; /* allows scrolling if content is tall */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 200px; /* space for sidebar */
+    padding: 20px;
+}

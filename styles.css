@@ -128,8 +128,8 @@ section h2 {
 }
 
 .about-logo {
-  width: 45%;
-  height: auto;
+  height: 100px;  /* set equal height */
+  width: auto;    /* keeps aspect ratio */
 }
 
 .about-image {

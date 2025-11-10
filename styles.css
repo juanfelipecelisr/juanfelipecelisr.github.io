@@ -127,6 +127,11 @@ section h2 {
   gap: 20px;               /* space between logos */
 }
 
+.about-logo {
+  width: 50%;
+  height: auto;
+}
+
 .about-image {
     width: 80%; /* Increase the width to make the image larger */
     height: auto; /* Keeps the aspect ratio */

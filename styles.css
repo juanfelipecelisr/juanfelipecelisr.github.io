@@ -120,6 +120,13 @@ section h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center; /* centers them horizontally */
+  align-items: center;     /* aligns vertically */
+  gap: 20px;               /* space between logos */
+}
+
 .about-image {
     width: 80%; /* Increase the width to make the image larger */
     height: auto; /* Keeps the aspect ratio */

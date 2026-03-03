@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Felipe Celis Rojas</title>
+
+    <meta name="color-scheme" content="light dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,40 +18,40 @@
     <header>
         <div class="header-overlay">
             <h1>Juan Felipe Celis Rojas</h1>
-            <nav>
+            <nav aria-label="Primary">
                 <ul>
-                    <li><a href="#" data-section="about">Interests</a></li>
-                    <li><a href="#" data-section="publications">Research</a></li>
+                    <li><a class="nav-link" href="#about" data-section="about" aria-controls="about">Interests</a></li>
+                    <li><a class="nav-link" href="#publications" data-section="publications" aria-controls="publications">Research</a></li>
                 </ul>
             </nav>
         </div>
-        <img src="IMG_5602.jpeg" alt="Header Image" class="header-image">
+        <img src="IMG_5602.jpeg" alt="Header Image" class="header-image" decoding="async" fetchpriority="high">
     </header>
 
     <!-- Layout container -->
     <div class="layout">
         <!-- Fixed left sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" aria-label="About Me">
             <h2>About Me</h2>
             <div class="topic">
-                <p>I am a Mathematics PhD student at the <a href="https://www.ox.ac.uk" target="_blank">University of Oxford</a>, in <a href="https://www.mansfield.ox.ac.uk" target="_blank">Mansfield College</a>, under the supervision of Prof. Ulrike Tillmann and Prof. Heather Harrington.</p>
-                <p>I have a MSc in Mathematics with a minor in Quantum Science and Engineering from <a href="https://www.epfl.ch/en/" target="_blank">EPFL</a>.</p>   
+                <p>I am a Mathematics PhD student at the <a href="https://www.ox.ac.uk" target="_blank" rel="noopener noreferrer">University of Oxford</a>, in <a href="https://www.mansfield.ox.ac.uk" target="_blank" rel="noopener noreferrer">Mansfield College</a>, under the supervision of Prof. Ulrike Tillmann and Prof. Heather Harrington.</p>
+                <p>I have a MSc in Mathematics with a minor in Quantum Science and Engineering from <a href="https://www.epfl.ch/en/" target="_blank" rel="noopener noreferrer">EPFL</a>.</p>   
             </div>
-            <img src="IMG_0852.jpeg" alt="Contact Image" class="about-image">
-            <p>Here is my <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/JuanFCelis.pdf" target="_blank">CV</a>.</p>
+            <img src="IMG_0852.jpeg" alt="Contact Image" class="about-image" loading="lazy" decoding="async">
+            <p>Here is my <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/JuanFCelis.pdf" target="_blank" rel="noopener noreferrer">CV</a>.</p>
             <p>Email: <a href="mailto:juan.celisrojas@maths.ox.ac.uk">juan.celisrojas@maths.ox.ac.uk</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/juan-felipe-celis-rojas" target="_blank">LinkedIn Profile</a></p>
-            <div class="logo-container">
-              <img src="Oxford_Logo.png" alt="Oxford Logo" class="about-logo">
-              <img src="Mansfield_Logo.svg" alt="Mansfield Logo" class="about-logo">
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/juan-felipe-celis-rojas" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
+            <div class="logo-container" aria-label="Affiliations">
+              <img src="Oxford_Logo.png" alt="Oxford Logo" class="about-logo" loading="lazy" decoding="async">
+              <img src="Mansfield_Logo.svg" alt="Mansfield Logo" class="about-logo" loading="lazy" decoding="async">
             </div>
 
         </aside>
 
         <!-- Main content -->
-        <main class="main-content">
+        <main class="main-content" aria-live="polite">
             <!-- Interests Section -->
-            <section id="about">
+            <section id="about" class="content-section is-active" aria-hidden="false">
                 <h2>Interests</h2>
                 <div class="topic">
                     <h2>Mathematics</h2>
@@ -62,22 +68,22 @@
             </section>
 
             <!-- Research Section -->
-            <section id="publications">
+            <section id="publications" class="content-section" hidden aria-hidden="true">
                 <h2>Research</h2>
                 <div class="topic">
                     <h2>Publications</h2>
                     <ul>
-                        <li>Finite groups as homotopy self-equivalences of finite spaces, GJM, Volume 9, Issue 2 (2024), 15-21 (<a href="https://gradmath.org/2024/12/25/finite-groups-as-homotopy-self-equivalences-of-finite-spaces/" target="_blank">Journal link</a>). </li>
+                        <li>Finite groups as homotopy self-equivalences of finite spaces, GJM, Volume 9, Issue 2 (2024), 15-21 (<a href="https://gradmath.org/2024/12/25/finite-groups-as-homotopy-self-equivalences-of-finite-spaces/" target="_blank" rel="noopener noreferrer">Journal link</a>). </li>
                     </ul>
                 </div>
 
                 <div class="topic">
                     <h2>Projects</h2>
                     <ul>
-                        <li>Homology of Sullivan Diagrams <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Master_Thesis.pdf" target="_blank">View PDF</a></li>
-                        <li>Riemannian Geometry of VQA <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/RiemannianGeometryForQuantumTasks.pdf" target="_blank">View PDF</a></li>
-                        <li>Homological stability <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability.pdf" target="_blank">View PDF</a></li>
-                        <li>Homological Stability of Symmetric Groups <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability_of_Symmetric_Groups.pdf" target="_blank">View PDF</a></li>
+                        <li>Homology of Sullivan Diagrams <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Master_Thesis.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
+                        <li>Riemannian Geometry of VQA <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/RiemannianGeometryForQuantumTasks.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
+                        <li>Homological stability <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
+                        <li>Homological Stability of Symmetric Groups <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability_of_Symmetric_Groups.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
                     </ul>
                 </div>
 

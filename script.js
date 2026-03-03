@@ -1,33 +1,48 @@
-// Wait until the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-    // Get all navigation links
-    const navLinks = document.querySelectorAll("nav ul li a");
+// Enhanced JavaScript for smooth transitions, dark mode toggle, interactive elements, analytics tracking, and improved navigation functionality
 
-    // Function to show the selected section
-    function showSection(sectionId) {
-        // Hide all sections
-        document.querySelectorAll("main section").forEach(section => {
-            section.style.display = "none";
-        });
-
-        // Display the selected section
-        const sectionToShow = document.getElementById(sectionId);
-        if (sectionToShow) {
-            sectionToShow.style.display = "block";
-        }
-    }
-
-    // Add click event listeners to each navigation link
-    navLinks.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default link behavior
-
-            // Get the target section from data attribute
-            const sectionId = this.getAttribute("data-section");
-            showSection(sectionId);
-        });
+// Smooth transitions
+function smoothScroll(target) {
+    document.querySelector(target).scrollIntoView({
+        behavior: 'smooth'
     });
+}
 
-    // Initial setup to show the first section on page load
-    showSection("about");
+// Dark mode toggle
+const toggleDarkMode = () => {
+    document.body.classList.toggle('dark-mode');
+    const mode = document.body.classList.contains('dark-mode') ? 'Dark' : 'Light';
+    localStorage.setItem('mode', mode);
+};
+
+// Check for saved mode
+document.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('mode');
+    if (savedMode === 'Dark') {
+        document.body.classList.add('dark-mode');
+    }
+});
+
+// Set up interactive elements
+const interactiveElements = document.querySelectorAll('.interactive');
+interactiveElements.forEach(element => {
+    element.addEventListener('click', () => {
+        element.classList.toggle('active');
+    });
+});
+
+// Analytics tracking
+const trackEvent = (event) => {
+    console.log(`Event tracked: ${event}`);
+    // Here you can integrate your analytics service
+};
+
+// Improved navigation functionality
+const navLinks = document.querySelectorAll('a.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href');
+        smoothScroll(targetId);
+        trackEvent(`Navigated to ${targetId}`);
+    });
 });

@@ -1,173 +1,187 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = Array.from(document.querySelectorAll("nav a[data-section]"));
-    const sections = Array.from(document.querySelectorAll("main section"));
-    const headerImg = document.querySelector(".header-image");
+  const headerNavLinks = Array.from(document.querySelectorAll("header nav a"));
+  const sections = Array.from(document.querySelectorAll("main section"));
+  const headerImg = document.querySelector(".header-image");
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (sections.length === 0) return;
 
-    let activeId = null;
-    let revealTimers = [];
-    let exitFallbackTimer = null;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function clearTimers() {
-        revealTimers.forEach(t => clearTimeout(t));
-        revealTimers = [];
-        if (exitFallbackTimer) {
-            clearTimeout(exitFallbackTimer);
-            exitFallbackTimer = null;
-        }
+  let activeId = null;
+  let revealTimers = [];
+  let exitFallbackTimer = null;
+
+  function clearTimers() {
+    revealTimers.forEach((t) => clearTimeout(t));
+    revealTimers = [];
+    if (exitFallbackTimer) {
+      clearTimeout(exitFallbackTimer);
+      exitFallbackTimer = null;
+    }
+  }
+
+  function getTargetIdFromLink(link) {
+    // Priority: data-section -> aria-controls -> href hash -> inline onclick showSection('id')
+    const ds = link.getAttribute("data-section");
+    if (ds && document.getElementById(ds)) return ds;
+
+    const ac = link.getAttribute("aria-controls");
+    if (ac && document.getElementById(ac)) return ac;
+
+    const href = link.getAttribute("href") || "";
+    if (href.startsWith("#")) {
+      const id = href.slice(1).trim();
+      if (id && document.getElementById(id)) return id;
     }
 
-    function setActiveLink(sectionId) {
-        navLinks.forEach(link => {
-            const isActive = link.getAttribute("data-section") === sectionId;
-            link.classList.toggle("active", isActive);
-            if (isActive) {
-                link.setAttribute("aria-current", "page");
-            } else {
-                link.removeAttribute("aria-current");
-            }
-        });
+    const onclick = link.getAttribute("onclick") || "";
+    const m = onclick.match(/showSection\s*\(\s*['"]([^'"]+)['"]\s*\)/);
+    if (m && m[1] && document.getElementById(m[1])) return m[1];
+
+    return null;
+  }
+
+  function setActiveLink(sectionId) {
+    headerNavLinks.forEach((link) => {
+      const target = getTargetIdFromLink(link);
+      const isActive = target === sectionId;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  function revealTopics(section) {
+    const topics = Array.from(section.querySelectorAll(".topic"));
+    topics.forEach((t) => t.classList.remove("reveal"));
+
+    if (prefersReducedMotion) {
+      topics.forEach((t) => t.classList.add("reveal"));
+      return;
     }
 
-    function hideSection(section) {
-        section.classList.remove("is-active", "is-exiting");
-        section.hidden = true;
-        section.setAttribute("aria-hidden", "true");
+    topics.forEach((topic, i) => {
+      const timer = setTimeout(() => topic.classList.add("reveal"), 90 * i);
+      revealTimers.push(timer);
+    });
+  }
+
+  function hideSection(section) {
+    section.classList.remove("is-active");
+    section.hidden = true;
+    section.setAttribute("aria-hidden", "true");
+  }
+
+  function showSectionEl(section) {
+    section.hidden = false;
+    section.setAttribute("aria-hidden", "false");
+    // reflow to ensure transition triggers
+    void section.offsetHeight;
+    section.classList.add("is-active");
+  }
+
+  function switchSection(sectionId, { updateUrl = true } = {}) {
+    const next = document.getElementById(sectionId);
+    if (!next) return;
+
+    const current = activeId ? document.getElementById(activeId) : null;
+    if (current === next) {
+      setActiveLink(sectionId);
+      return;
     }
 
-    function showSection(section) {
-        section.hidden = false;
-        section.setAttribute("aria-hidden", "false");
-    }
+    clearTimers();
 
-    function revealTopics(section) {
-        // Stagger topic reveal for a more dynamic feel
-        const topics = Array.from(section.querySelectorAll(".topic"));
-        topics.forEach(t => t.classList.remove("reveal"));
-
-        if (prefersReducedMotion) {
-            topics.forEach(t => t.classList.add("reveal"));
-            return;
-        }
-
-        topics.forEach((topic, i) => {
-            const timer = setTimeout(() => {
-                topic.classList.add("reveal");
-            }, 90 * i);
-            revealTimers.push(timer);
-        });
-    }
-
-    function switchSection(sectionId, { updateHash = true } = {}) {
-        const next = document.getElementById(sectionId);
-        if (!next) return;
-
-        const current =
-            (activeId && document.getElementById(activeId)) ||
-            sections.find(s => !s.hidden) ||
-            null;
-
-        if (current === next) {
-            setActiveLink(sectionId);
-            if (updateHash) history.replaceState(null, "", `#${sectionId}`);
-            return;
-        }
-
-        clearTimers();
-
-        // Ensure only the current and next sections are unhidden during transition
-        sections.forEach(s => {
-            if (s !== current && s !== next) hideSection(s);
-        });
-
-        setActiveLink(sectionId);
-        if (updateHash) history.replaceState(null, "", `#${sectionId}`);
-        activeId = sectionId;
-
-        // No-animation mode
-        if (prefersReducedMotion || !current) {
-            sections.forEach(s => (s === next ? showSection(s) : hideSection(s)));
-            next.classList.add("is-active");
-            revealTopics(next);
-            return;
-        }
-
-        // Prepare next section for entrance
-        showSection(next);
-        next.classList.remove("is-exiting");
-        next.classList.remove("is-active");
-
-        // Force reflow so the transition triggers reliably
-        void next.offsetHeight;
-
-        // Animate in
-        next.classList.add("is-active");
-        revealTopics(next);
-
-        // Animate out current, then hide it
-        current.classList.add("is-exiting");
-        current.classList.remove("is-active");
-
-        const finishExit = () => {
-            hideSection(current);
-        };
-
-        current.addEventListener("transitionend", finishExit, { once: true });
-
-        // Fallback in case transitionend doesn't fire
-        exitFallbackTimer = setTimeout(() => {
-            finishExit();
-        }, 450);
-    }
-
-    // Click handlers
-    navLinks.forEach(link => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const target = link.getAttribute("data-section");
-            switchSection(target, { updateHash: true });
-        });
+    // Ensure only current/next are visible during transition
+    sections.forEach((s) => {
+      if (s !== current && s !== next) hideSection(s);
     });
 
-    // Hash routing + back/forward support
-    function handleHash() {
-        const hash = (window.location.hash || "").replace("#", "").trim();
-        const initial = hash && document.getElementById(hash) ? hash : "about";
-        switchSection(initial, { updateHash: false });
+    setActiveLink(sectionId);
+    activeId = sectionId;
+
+    // Update URL without jump/scroll
+    if (updateUrl) {
+      history.pushState(null, "", `#${sectionId}`);
     }
 
-    window.addEventListener("hashchange", handleHash);
+    // If no current (first load) or reduced motion, swap instantly
+    if (!current || prefersReducedMotion) {
+      sections.forEach((s) => (s === next ? showSectionEl(s) : hideSection(s)));
+      revealTopics(next);
+      return;
+    }
 
-    // Initial setup
-    sections.forEach(s => {
-        if (s.id !== "about") hideSection(s);
+    // Show next first (so it can animate in)
+    showSectionEl(next);
+    revealTopics(next);
+
+    // Animate current out, then hide
+    current.classList.remove("is-active");
+
+    const finish = () => {
+      hideSection(current);
+    };
+
+    current.addEventListener("transitionend", finish, { once: true });
+
+    // Fallback in case transitionend doesn't fire
+    exitFallbackTimer = setTimeout(finish, 450);
+  }
+
+  function idFromLocation() {
+    const raw = (window.location.hash || "").replace("#", "").trim();
+    return raw && document.getElementById(raw) ? raw : sections[0].id;
+  }
+
+  // Make inline onclick="showSection('about')" still work
+  window.showSection = (id) => {
+    if (!id || !document.getElementById(id)) return;
+    switchSection(id, { updateUrl: true });
+  };
+
+  // Click handlers for header nav
+  headerNavLinks.forEach((link) => {
+    const targetId = getTargetIdFromLink(link);
+    if (!targetId) return;
+
+    // Normalize attributes so styling/logic is consistent
+    link.setAttribute("data-section", targetId);
+    link.setAttribute("href", `#${targetId}`);
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      switchSection(targetId, { updateUrl: true });
     });
-    activeId = "about";
-    setActiveLink("about");
-    revealTopics(document.getElementById("about"));
+  });
 
-    // Apply initial hash if present
-    handleHash();
+  // Back/forward
+  window.addEventListener("popstate", () => {
+    switchSection(idFromLocation(), { updateUrl: false });
+  });
 
-    // Lightweight parallax on header image (purely visual)
-    if (headerImg && !prefersReducedMotion) {
-        let ticking = false;
+  // Initialize
+  sections.forEach((s) => hideSection(s));
+  switchSection(idFromLocation(), { updateUrl: false });
 
-        function onScroll() {
-            if (ticking) return;
-            ticking = true;
+  // Lightweight parallax on header image (visual only)
+  if (headerImg && !prefersReducedMotion) {
+    let ticking = false;
 
-            requestAnimationFrame(() => {
-                const y = window.scrollY || 0;
-                const shift = Math.min(y * 0.12, 28);
-                const scale = 1.03 + Math.min(y / 2500, 0.03);
-                headerImg.style.transform = `translateY(${shift}px) scale(${scale})`;
-                ticking = false;
-            });
-        }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
 
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
+      requestAnimationFrame(() => {
+        const y = window.scrollY || 0;
+        const shift = Math.min(y * 0.12, 28);
+        const scale = 1.03 + Math.min(y / 2500, 0.03);
+        headerImg.style.transform = `translateY(${shift}px) scale(${scale})`;
+        ticking = false;
+      });
     }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 });

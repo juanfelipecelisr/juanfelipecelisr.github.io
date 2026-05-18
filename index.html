@@ -3,107 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Felipe Celis Rojas</title>
+    <title>Juan Felipe Celis Rojas — Mathematics, Oxford</title>
+    <meta name="description" content="Juan Felipe Celis Rojas — Mathematics PhD candidate at the University of Oxford. Algebraic topology, configuration spaces, and quantum computation.">
 
     <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f4ede0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#07101e" media="(prefers-color-scheme: dark)">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header with Navigation -->
-    <header>
-        <div class="header-overlay">
-            <h1>Juan Felipe Celis Rojas</h1>
-            <nav aria-label="Primary">
-                <ul>
-                    <li><a class="nav-link" href="#about" data-section="about" aria-controls="about">Interests</a></li>
-                    <li><a class="nav-link" href="#publications" data-section="publications" aria-controls="publications">Research</a></li>
-                </ul>
-            </nav>
-        </div>
-        <img src="IMG_5602.jpeg" alt="Header Image" class="header-image" decoding="async" fetchpriority="high">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Live configuration-space canvas (decorative) -->
+    <canvas id="config-space" aria-hidden="true"></canvas>
+
+    <!-- Dot navigation (always reachable) -->
+    <nav class="dot-nav" aria-label="Section navigation">
+        <a href="#hero" data-section="hero" data-label="Top"><span></span></a>
+        <a href="#about" data-section="about" data-label="About"><span></span></a>
+        <a href="#interests" data-section="interests" data-label="Interests"><span></span></a>
+        <a href="#research" data-section="research" data-label="Research"><span></span></a>
+        <a href="#contact" data-section="contact" data-label="Contact"><span></span></a>
+    </nav>
+
+    <!-- Top monogram / theme toggle bar -->
+    <header class="topbar">
+        <a class="monogram" href="#hero" aria-label="Top of page">JFC</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle colour theme" aria-pressed="false">
+            <span class="theme-toggle__label">Theme</span>
+            <span class="theme-toggle__dot" aria-hidden="true"></span>
+        </button>
     </header>
 
-    <!-- Layout container -->
-    <div class="layout">
-        <!-- Fixed left sidebar -->
-        <aside class="sidebar" aria-label="About Me">
-            <h2>About Me</h2>
-            <div class="topic">
-                <p>I am a Mathematics PhD student at the <a href="https://www.ox.ac.uk" target="_blank" rel="noopener noreferrer">University of Oxford</a>, in <a href="https://www.mansfield.ox.ac.uk" target="_blank" rel="noopener noreferrer">Mansfield College</a>, under the supervision of Prof. Ulrike Tillmann and Prof. Heather Harrington.</p>
-                <p>I have a MSc in Mathematics with a minor in Quantum Science and Engineering from <a href="https://www.epfl.ch/en/" target="_blank" rel="noopener noreferrer">EPFL</a>.</p>   
-            </div>
-            <img src="IMG_0852.jpeg" alt="Contact Image" class="about-image" loading="lazy" decoding="async">
-            <p>Here is my <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/JuanFCelis.pdf" target="_blank" rel="noopener noreferrer">CV</a>.</p>
-            <p>Email: <a href="mailto:juan.celisrojas@maths.ox.ac.uk">juan.celisrojas@maths.ox.ac.uk</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/juan-felipe-celis-rojas" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
-            <div class="logo-container" aria-label="Affiliations">
-              <img src="Oxford_Logo.png" alt="Oxford Logo" class="about-logo" loading="lazy" decoding="async">
-              <img src="Mansfield_Logo.svg" alt="Mansfield Logo" class="about-logo" loading="lazy" decoding="async">
-            </div>
+    <main id="main">
 
-        </aside>
+        <!-- HERO -->
+        <section id="hero" class="hero">
+            <p class="eyebrow"><span>Mathematics</span><span>·</span><span>University of Oxford</span></p>
+            <h1 class="display">
+                Juan&nbsp;Felipe<br>
+                <em>Celis&nbsp;Rojas</em>
+            </h1>
+            <p class="lede">
+                PhD candidate working on <strong>configuration spaces</strong>,
+                <strong>homological stability</strong>, and the
+                <strong>quantum&nbsp;side of topology</strong>.
+            </p>
+            <ul class="chips" aria-label="Research keywords">
+                <li>Algebraic topology</li>
+                <li>Homotopy theory</li>
+                <li>Configuration spaces</li>
+                <li>Sullivan diagrams</li>
+                <li>Topological data analysis</li>
+                <li>VQE</li>
+                <li>Quantum error correction</li>
+                <li>Post-quantum cryptography</li>
+            </ul>
+            <p class="scroll-hint" aria-hidden="true">
+                <span>scroll</span>
+                <svg viewBox="0 0 12 28" width="12" height="28" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <rect x="0.6" y="0.6" width="10.8" height="26.8" rx="5.4"/>
+                    <circle class="scroll-hint__dot" cx="6" cy="8" r="1.6" fill="currentColor" stroke="none"/>
+                </svg>
+            </p>
+        </section>
 
-        <!-- Main content -->
-        <main class="main-content" aria-live="polite">
-            <!-- Interests Section -->
-            <section id="about" class="content-section is-active" aria-hidden="false">
+        <!-- ABOUT -->
+        <section id="about" class="block">
+            <p class="section-label" aria-hidden="true">§&nbsp;01 — About</p>
+            <div class="block__body">
+                <h2>About</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            I am a Mathematics PhD student at the
+                            <a href="https://www.ox.ac.uk" target="_blank" rel="noopener noreferrer">University of Oxford</a>,
+                            in <a href="https://www.mansfield.ox.ac.uk" target="_blank" rel="noopener noreferrer">Mansfield College</a>,
+                            under the supervision of Prof.&nbsp;Ulrike&nbsp;Tillmann and Prof.&nbsp;Heather&nbsp;Harrington.
+                        </p>
+                        <p>
+                            I hold an MSc in Mathematics with a minor in Quantum Science and Engineering from
+                            <a href="https://www.epfl.ch/en/" target="_blank" rel="noopener noreferrer">EPFL</a>.
+                            My work sits at the meeting point of algebraic topology, mathematical biology, and quantum computation.
+                        </p>
+                        <ul class="quick-links">
+                            <li><a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/JuanFCelis.pdf" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span>&nbsp;Curriculum Vitae</a></li>
+                            <li><a href="mailto:juan.celisrojas@maths.ox.ac.uk"><span class="arrow">↗</span>&nbsp;Email</a></li>
+                            <li><a href="https://www.linkedin.com/in/juan-felipe-celis-rojas" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span>&nbsp;LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    <figure class="portrait">
+                        <img src="IMG_0852.jpeg" alt="Portrait of Juan Felipe Celis Rojas" loading="lazy" decoding="async">
+                        <figcaption>Oxford, 2024</figcaption>
+                    </figure>
+                </div>
+
+                <div class="affiliations" aria-label="Affiliations">
+                    <a href="https://www.ox.ac.uk" target="_blank" rel="noopener noreferrer" aria-label="University of Oxford">
+                        <img src="Oxford_Logo.png" alt="" loading="lazy" decoding="async">
+                    </a>
+                    <a href="https://www.mansfield.ox.ac.uk" target="_blank" rel="noopener noreferrer" aria-label="Mansfield College">
+                        <img src="Mansfield_Logo.svg" alt="" loading="lazy" decoding="async">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERESTS -->
+        <section id="interests" class="block">
+            <p class="section-label" aria-hidden="true">§&nbsp;02 — Interests</p>
+            <div class="block__body">
                 <h2>Interests</h2>
-                <div class="topic">
-                    <h2>Mathematics</h2>
-                    <p>Broadly speaking I am interested in algebraic topology and homotopy theory. I am currently working on configuration spaces and their homotpy type. This study is highly motivated by mollecular biology. The main goal is to extend classical results from configurations spaces so that we can apply them to our biological setting.</p>
-                    <p>In the past, I have done some projects to understand the machinery behind on homological stability, where I focused on symmetric groups and mapping class groups of surfaces. Now I work on the harmonic campactification of the mapping class group of Riemann surfaces via Sullivan diagrams.</p>
-                </div>
-            
-                <div class="topic">
-                    <h2>Quantum Science and Engineering</h2>
-                    <p>I study the application of quantum algorithms to topological data analysis (TDA). Recent papers show how quantum computers can be used to compute Betti numbers in persistent homology.</p>
-                    <p>During my master I focused on quantum algorithms, mainly on Variational Quantum Eigensolvers. I used Riemannian geometry and Lie group theory to see that many VQEs are derived from the same equation, just under a different perspective.</p>
-                    <p>The latest results in quantum computing shifted my interests to quantum error correction, fault-tolerant quantum computers and post-quantum cryptography.</p>
-                </div>
-            </section>
 
-            <!-- Research Section -->
-            <section id="publications" class="content-section" aria-hidden="true">
+                <article class="topic">
+                    <header class="topic__head">
+                        <span class="topic__index">i.</span>
+                        <h3>Mathematics</h3>
+                    </header>
+                    <p>
+                        Broadly speaking, I am interested in <em>algebraic topology</em> and <em>homotopy theory</em>.
+                        I am currently working on configuration spaces and their homotopy type. This study is highly motivated by
+                        molecular biology: the goal is to extend classical results from configuration spaces so that we can apply them
+                        to our biological setting.
+                    </p>
+                    <p>
+                        In the past, I have worked on the machinery behind homological stability, with a focus on symmetric groups and
+                        mapping class groups of surfaces. I now study the harmonic compactification of the mapping class group of
+                        Riemann surfaces via Sullivan diagrams.
+                    </p>
+                </article>
+
+                <article class="topic">
+                    <header class="topic__head">
+                        <span class="topic__index">ii.</span>
+                        <h3>Quantum Science &amp; Engineering</h3>
+                    </header>
+                    <p>
+                        I study the application of quantum algorithms to <em>topological data analysis</em> (TDA). Recent papers show
+                        how quantum computers can be used to compute Betti numbers in persistent homology.
+                    </p>
+                    <p>
+                        During my master's I focused on quantum algorithms, mainly Variational Quantum Eigensolvers. Using Riemannian
+                        geometry and Lie group theory, I showed that many VQEs are derived from the same equation, just under a
+                        different perspective.
+                    </p>
+                    <p>
+                        The latest results in quantum computing have shifted my interests toward quantum error correction,
+                        fault-tolerant quantum computers, and post-quantum cryptography.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- RESEARCH -->
+        <section id="research" class="block">
+            <p class="section-label" aria-hidden="true">§&nbsp;03 — Research</p>
+            <div class="block__body">
                 <h2>Research</h2>
-                <div class="topic">
-                    <h2>Publications</h2>
-                    <ul>
-                        <li>Finite groups as homotopy self-equivalences of finite spaces, GJM, Volume 9, Issue 2 (2024), 15-21 (<a href="https://gradmath.org/2024/12/25/finite-groups-as-homotopy-self-equivalences-of-finite-spaces/" target="_blank" rel="noopener noreferrer">Journal link</a>). </li>
+
+                <div class="research-block">
+                    <h3>Publications</h3>
+                    <ul class="entries">
+                        <li>
+                            <span class="entry__year">2024</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Finite groups as homotopy self-equivalences of finite spaces</p>
+                                <p class="entry__meta">
+                                    <span>Graduate Journal of Mathematics</span>
+                                    <span>Vol.&nbsp;9 (2), 15–21</span>
+                                    <a href="https://gradmath.org/2024/12/25/finite-groups-as-homotopy-self-equivalences-of-finite-spaces/" target="_blank" rel="noopener noreferrer">Journal&nbsp;↗</a>
+                                </p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="topic">
-                    <h2>Projects</h2>
-                    <ul>
-                        <li>Homology of Sullivan Diagrams <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Master_Thesis.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
-                        <li>Riemannian Geometry of VQA <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/RiemannianGeometryForQuantumTasks.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
-                        <li>Homological stability <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
-                        <li>Homological Stability of Symmetric Groups <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability_of_Symmetric_Groups.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></li>
+                <div class="research-block">
+                    <h3>Projects</h3>
+                    <ul class="entries">
+                        <li>
+                            <span class="entry__year">MSc</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Homology of Sullivan Diagrams</p>
+                                <p class="entry__meta">
+                                    <span>Master's thesis, EPFL</span>
+                                    <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Master_Thesis.pdf" target="_blank" rel="noopener noreferrer">PDF&nbsp;↗</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">MSc</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Riemannian Geometry of Variational Quantum Algorithms</p>
+                                <p class="entry__meta">
+                                    <span>Research project, EPFL</span>
+                                    <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/RiemannianGeometryForQuantumTasks.pdf" target="_blank" rel="noopener noreferrer">PDF&nbsp;↗</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">Notes</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Homological Stability</p>
+                                <p class="entry__meta">
+                                    <span>Survey notes</span>
+                                    <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability.pdf" target="_blank" rel="noopener noreferrer">PDF&nbsp;↗</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">Notes</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Homological Stability of Symmetric Groups</p>
+                                <p class="entry__meta">
+                                    <span>Survey notes</span>
+                                    <a href="https://raw.githubusercontent.com/juanfelipecelisr/juanfelipecelisr.github.io/main/Homological_Stability_of_Symmetric_Groups.pdf" target="_blank" rel="noopener noreferrer">PDF&nbsp;↗</a>
+                                </p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="topic">
-                    <h2>Talks</h2>
-                    <ul>
-                        <li>Riemannian Geometry of VQA, QIC Group Meeting EPFL, January 9th 2025 </li>
-                        <li>Homological stability of mapping class groups, Topology Workshop EPFL, January 7th 2025 </li>
-                        <li>Spectral sequences for homological stability, Topology Reading Group EPFL, November 27th 2024 </li>
-                        <li>Quillen's small object argument, Topology Reading Group, October 30th 2024 </li>
+                <div class="research-block">
+                    <h3>Talks</h3>
+                    <ul class="entries">
+                        <li>
+                            <span class="entry__year">Jan&nbsp;2025</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Riemannian Geometry of VQA</p>
+                                <p class="entry__meta"><span>QIC Group Meeting, EPFL</span><span>9 January 2025</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">Jan&nbsp;2025</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Homological stability of mapping class groups</p>
+                                <p class="entry__meta"><span>Topology Workshop, EPFL</span><span>7 January 2025</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">Nov&nbsp;2024</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Spectral sequences for homological stability</p>
+                                <p class="entry__meta"><span>Topology Reading Group, EPFL</span><span>27 November 2024</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="entry__year">Oct&nbsp;2024</span>
+                            <div class="entry__body">
+                                <p class="entry__title">Quillen's small object argument</p>
+                                <p class="entry__meta"><span>Topology Reading Group</span><span>30 October 2024</span></p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
-                
-            </section>
-            
-        </main>
-    </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="block">
+            <p class="section-label" aria-hidden="true">§&nbsp;04 — Contact</p>
+            <div class="block__body">
+                <h2>Get&nbsp;in&nbsp;touch</h2>
+                <p class="contact-lede">
+                    I'm always glad to talk algebraic topology, quantum computing, and everything that lives between them.
+                </p>
+                <dl class="contact-list">
+                    <div>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:juan.celisrojas@maths.ox.ac.uk">juan.celisrojas@maths.ox.ac.uk</a></dd>
+                    </div>
+                    <div>
+                        <dt>Department</dt>
+                        <dd><a href="https://www.maths.ox.ac.uk" target="_blank" rel="noopener noreferrer">Mathematical Institute, Oxford</a></dd>
+                    </div>
+                    <div>
+                        <dt>College</dt>
+                        <dd><a href="https://www.mansfield.ox.ac.uk" target="_blank" rel="noopener noreferrer">Mansfield College</a></dd>
+                    </div>
+                    <div>
+                        <dt>LinkedIn</dt>
+                        <dd><a href="https://www.linkedin.com/in/juan-felipe-celis-rojas" target="_blank" rel="noopener noreferrer">juan-felipe-celis-rojas</a></dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>&copy; 2024 Juan Felipe Celis Rojas</p>
+        <p>©&nbsp;<span id="year">2025</span>&nbsp;Juan Felipe Celis Rojas</p>
+        <p class="colophon">Set in <span class="serif">Fraunces</span>, Inter &amp; JetBrains&nbsp;Mono. Configuration&nbsp;space rendered live in the background.</p>
     </footer>
 
     <script src="script.js"></script>
